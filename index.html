@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AKALI | Webdesign Ostrava</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Kalam:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'akali-bg': '#FDFBF7',
+                        'akali-dark': '#18181b',
+                        'akali-primary': '#6366F1',
+                        'akali-secondary': '#F472B6',
+                        'akali-surface': '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    boxShadow: {
+                        'flat': '4px 4px 0px 0px rgba(24, 24, 27, 1)',
+                        'flat-hover': '8px 8px 0px 0px rgba(24, 24, 27, 1)',
+                        'flat-sm': '2px 2px 0px 0px rgba(24, 24, 27, 1)',
+                        'flat-primary': '8px 8px 0px 0px #6366F1',
+                        'flat-primary-hover': '12px 12px 0px 0px #6366F1',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #18181b;
+            overflow-x: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            will-change: transform;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 5s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        .btn-flat {
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .btn-flat:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px rgba(24, 24, 27, 1);
+        }
+
+        .btn-flat:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px rgba(24, 24, 27, 1);
+        }
+
+        /* Pricing Card Hover Styles */
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 8px 8px 0px 0px rgba(24, 24, 27, 1);
+            border-color: #18181b;
+        }
+
+        .pricing-card-dark {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card-dark:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 12px 12px 0px 0px #6366F1; /* Increased flat shadow on hover */
+            border-color: #18181b;
+        }
+
+        .highlight-text {
+            position: relative;
+            z-index: 10;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: -2px;
+            width: 105%;
+            height: 30%;
+            background-color: #F472B6;
+            opacity: 0.4;
+            z-index: -1;
+            transform: rotate(-1deg);
+            border-radius: 4px;
+        }
+
+        /* FAQ Styles */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            /* Approximate max height */
+            transition: max-height 0.5s ease-in;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Chatbot Custom Scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        #chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #chat-messages::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Dekorativní pozadí - Parallax Elements -->
+    <div class="blob bg-purple-200 w-96 h-96 top-0 left-0 mix-blend-multiply" data-speed="0.5"></div>
+    <div class="blob bg-pink-200 w-96 h-96 bottom-0 right-0 mix-blend-multiply" data-speed="0.8"></div>
+    <div class="blob bg-yellow-100 w-64 h-64 top-1/3 right-10 mix-blend-multiply opacity-40" data-speed="0.3"></div>
+
+    <!-- 
+        MODIFIKOVANÁ NAVIGACE:
+        - Odstraněno: bg-akali-bg/90, backdrop-blur-md, border-b (aby byla celá lišta průhledná)
+        - Přidáno: větší padding (py-4 md:py-6) pro lepší spacing
+    -->
+    <nav class="fixed w-full z-50 px-6 py-4 md:py-6 transition-all duration-300">
+        <div class="container mx-auto max-w-6xl flex justify-between items-center">
+            
+            <!-- LOGO: Nyní poloprůhledné -->
+            <a href="#" class="font-sans font-black text-2xl tracking-tight flex items-center gap-2 relative z-50 bg-white/90 backdrop-blur-sm border-2 border-black/5 px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-all">
+                <div class="w-4 h-4 bg-akali-primary rounded-sm shadow-sm"></div>
+                AKALI
+            </a>
+
+            <!-- 
+                DESKTOP MENU: "Bublina"
+                - Přidáno: bg-white/80, backdrop-blur-md, border-2, rounded-xl (stejný jako button), shadow-sm
+                - Zarovnání a padding nastaveny tak, aby to ladilo s tlačítkem
+            -->
+            <div class="hidden md:flex gap-8 font-semibold text-sm bg-white/90 backdrop-blur-sm border-2 border-black/5 px-8 py-3 rounded-xl shadow-sm items-center">
+                <a href="#proc-ja" class="hover:text-akali-primary transition-colors">Proč já?</a>
+                <a href="#sluzby" class="hover:text-akali-primary transition-colors">Co umím</a>
+                <a href="#prace" class="hover:text-akali-primary transition-colors">Portfolio</a>
+                <a href="#investice" class="hover:text-akali-primary transition-colors">Ceník</a>
+            </div>
+
+            <!-- TLAČÍTKO KONTAKT: Zůstává stejné -->
+            <a href="#kontakt"
+                class="bg-akali-primary text-white border-2 border-black px-6 py-3 rounded-xl font-bold text-sm shadow-flat hover:shadow-flat-hover btn-flat hidden md:block transition-all relative z-50">
+                Napište mi
+            </a>
+
+            <!-- 
+                MOBILNÍ MENU TLAČÍTKO:
+                - Přidáno: bg-white, border-2, rounded-xl (čtverec s oblými rohy pod ikonou)
+            -->
+            <button id="menu-btn" class="md:hidden p-2 bg-white/90 backdrop-blur-sm border-2 border-black/5 rounded-xl text-akali-dark z-50 relative shadow-sm hover:shadow-md transition-all">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-akali-bg z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 md:hidden">
+        <a href="#proc-ja" class="text-3xl font-bold mobile-link">Proč já?</a>
+        <a href="#sluzby" class="text-3xl font-bold mobile-link">Služby</a>
+        <a href="#prace" class="text-3xl font-bold mobile-link">Portfolio</a>
+        <a href="#investice" class="text-3xl font-bold mobile-link">Ceník</a>
+        <a href="#kontakt" class="text-3xl font-bold text-akali-primary mobile-link">Kontakt</a>
+    </div>
+
+    <!-- Hero Sekce (Upraveno pro mobile first view) -->
+    <header class="pt-32 pb-8 md:pt-48 md:pb-24 px-6 relative overflow-hidden">
+        <div class="container mx-auto max-w-6xl grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+            
+            <!-- Text Content (Order 2 na mobilu, 1 na desktopu) -->
+            <div class="order-2 md:order-1 relative z-10">
+                <!-- Kratší H1 a menší font na mobilu (text-4xl) -->
+                <h1 class="font-sans font-extrabold text-4xl md:text-7xl leading-[1.1] mb-4 text-akali-dark">
+                    Weby, co <br>
+                    <span class="highlight-text">vydělávají.</span>
+                </h1>
+                <p class="font-sans text-base md:text-lg text-gray-600 mb-6 max-w-lg leading-relaxed">
+                    Stavím moderní weby s důrazem na čistý design a funkčnost. Žádný korporátní balast, jen přímá cesta
+                    k vašim zákazníkům.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="#investice"
+                        class="bg-akali-primary text-white px-8 py-3 md:py-4 rounded-xl font-bold text-lg shadow-flat btn-flat text-center border-2 border-transparent">
+                        Chci nový web
+                    </a>
+                    <a href="#sluzby"
+                        class="bg-white border-2 border-black/10 text-akali-dark px-8 py-3 md:py-4 rounded-xl font-bold text-lg hover:border-black/30 transition-colors text-center">
+                        Jak to funguje?
+                    </a>
+                </div>
+
+                <p class="font-hand text-gray-400 mt-4 rotate-2 ml-4 text-sm md:text-base">
+                    *Kódováno ručně v Ostravě
+                </p>
+            </div>
+
+            <!-- Image Content (Order 1 na mobilu = první, 2 na desktopu) -->
+            <!-- Změna: mb-8 na mb-4 pro menší mezeru na mobilu -->
+            <div class="order-1 md:order-2 relative flex justify-center mb-4 md:mb-0">
+                <!-- Návrat k fungujícímu obrázku, lehce natočený (rotate-6) pro dynamiku -->
+                <img src="https://illustrations.popsy.co/amber/product-launch.svg" alt="Web Launch Illustration"
+                    class="w-2/3 md:w-full md:max-w-md object-contain animate-float drop-shadow-2xl rotate-6">
+                <!-- Decorative animated dots -->
+                <div class="absolute w-4 h-4 bg-akali-primary rounded-full top-10 left-10 animate-bounce delay-700">
+                </div>
+                <div
+                    class="absolute w-3 h-3 bg-akali-secondary rounded-full bottom-10 right-10 animate-pulse delay-300">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Proč já / O mně -->
+    <section id="proc-ja" class="py-16 px-6 relative">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div class="relative">
+                    <img src="https://illustrations.popsy.co/amber/creative-work.svg" alt="Creative Process"
+                        class="w-full max-w-md animate-float-delayed mx-auto">
+                </div>
+                <div>
+                    <h2 class="font-sans font-bold text-4xl mb-6">Nejsem agentura.<br>Jsem <span
+                            class="text-akali-primary">váš partner.</span></h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Většina webů vypadá stejně. Nuda, šablona, generický text. Já k tomu přistupuji jinak.
+                    </p>
+                    <div class="space-y-6">
+                        <!-- Ikona 1: Změna barvy na Primary (Indigo) a ikony na RAKETU -->
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-akali-primary/10 rounded-lg flex items-center justify-center text-akali-primary flex-shrink-0">
+                                <i data-lucide="rocket"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-1">Rychlost je základ</h3>
+                                <p class="text-gray-500 text-sm">Žádné zbytečné pluginy. Čistý kód, který se načte dřív,
+                                    než zákazník stihne mrknout.</p>
+                            </div>
+                        </div>
+                        <!-- Ikona 2: Změna barvy na Secondary (Pink) a ikony na TABLET+MOBIL -->
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 bg-akali-secondary/10 rounded-lg flex items-center justify-center text-akali-secondary flex-shrink-0">
+                                <i data-lucide="tablet-smartphone"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-1">Mobile First</h3>
+                                <p class="text-gray-500 text-sm">Design tvořím primárně pro telefony, protože tam je
+                                    dnes 70 % vašich zákazníků.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Služby - Minimalist Grid -->
+    <section id="sluzby" class="py-16 bg-white border-y border-black/5">
+        <div class="container mx-auto max-w-6xl px-6 mb-12">
+            <div class="text-left max-w-2xl">
+                <span class="text-akali-primary font-bold tracking-widest uppercase text-sm">Co dělám</span>
+                <h2 class="font-sans font-bold text-4xl mt-2 mb-6">Kompletní digitální servis</h2>
+                <p class="text-gray-500 text-lg">
+                    Nestavím jen weby. Stavím nástroje, které vám ušetří čas a vydělají peníze. Od návrhu po kód.
+                </p>
+            </div>
+        </div>
+
+        <div class="container mx-auto max-w-6xl px-6">
+            <div
+                class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/5 border-t border-b border-black/5">
+                <!-- Column 1 -->
+                <div
+                    class="service-col group p-8 md:p-12 hover:bg-gray-50/50 transition-colors duration-300 flex flex-col items-start text-left">
+                    <div class="h-24 flex items-center justify-start mb-6">
+                        <img src="https://illustrations.popsy.co/amber/web-design.svg"
+                            class="h-24 object-contain group-hover:scale-110 transition-transform duration-500 origin-left">
+                    </div>
+                    <h3 class="font-bold text-2xl mb-4 group-hover:text-akali-primary transition-colors">Design & UI/UX
+                    </h3>
+                    <p class="text-gray-500 text-base mb-4 leading-relaxed">
+                        Vytvářím vizuální styl, který si lidé zapamatují. Čistý, moderní a použitelný na každém
+                        zařízení.
+                    </p>
+                </div>
+
+                <!-- Column 2 -->
+                <div
+                    class="service-col group p-8 md:p-12 hover:bg-gray-50/50 transition-colors duration-300 flex flex-col items-start text-left">
+                    <div class="h-24 flex items-center justify-start mb-6">
+                        <img src="https://illustrations.popsy.co/amber/engineer.svg"
+                            class="h-24 object-contain group-hover:scale-110 transition-transform duration-500 origin-left">
+                    </div>
+                    <h3 class="font-bold text-2xl mb-4 group-hover:text-akali-primary transition-colors">Vývoj & Kód
+                    </h3>
+                    <p class="text-gray-500 text-base mb-4 leading-relaxed">
+                        Kvalitní kód bez balastu. Weby, které se načtou bleskově, jsou bezpečné a fungují všude.
+                    </p>
+                </div>
+
+                <!-- Column 3 -->
+                <div
+                    class="service-col group p-8 md:p-12 hover:bg-gray-50/50 transition-colors duration-300 flex flex-col items-start text-left">
+                    <div class="h-24 flex items-center justify-start mb-6">
+                        <img src="https://illustrations.popsy.co/amber/success.svg"
+                            class="h-24 object-contain group-hover:scale-110 transition-transform duration-500 origin-left">
+                    </div>
+                    <h3 class="font-bold text-2xl mb-4 group-hover:text-akali-primary transition-colors">SEO & Růst</h3>
+                    <p class="text-gray-500 text-base mb-4 leading-relaxed">
+                        Webem to nekončí. Nastavím ho tak, aby vás vyhledávače milovaly a zákazníci našli.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Práce -->
+    <section id="prace" class="py-16 px-6 bg-akali-bg relative">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Změna: Zarovnání doleva pro konzistenci -->
+            <div class="text-left mb-12">
+                <span class="text-akali-primary font-bold tracking-widest uppercase text-sm">Portfolio</span>
+                <h2 class="font-sans font-bold text-4xl mt-2 mb-4">Vybrané projekty</h2>
+                <p class="text-gray-500 max-w-lg">
+                    Ukázky práce, která pomáhá mým klientům růst.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Project 1 -->
+                <div class="group cursor-pointer portfolio-item">
+                    <div
+                        class="relative overflow-hidden rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
+                        <div
+                            class="absolute top-4 left-4 z-10 bg-black text-white text-xs font-bold px-3 py-1 rounded-full">
+                            E-shop</div>
+                        <div class="aspect-video bg-gray-50 flex items-center justify-center overflow-hidden">
+                            <img src="https://illustrations.popsy.co/amber/surr-shopping.svg"
+                                class="w-2/3 h-2/3 object-contain group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Neon Future
+                        Store</h3>
+                    <p class="text-gray-500">Kompletní redesign e-shopu s módou.</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group cursor-pointer mt-0 md:mt-16 portfolio-item">
+                    <div
+                        class="relative overflow-hidden rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
+                        <div
+                            class="absolute top-4 left-4 z-10 bg-black text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Web</div>
+                        <div class="aspect-video bg-gray-50 flex items-center justify-center overflow-hidden">
+                            <img src="https://illustrations.popsy.co/amber/finance.svg"
+                                class="w-2/3 h-2/3 object-contain group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Finance Novák
+                    </h3>
+                    <p class="text-gray-500">Firemní web pro finančního poradce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ceník - Alive & Enhanced -->
+    <section id="investice" class="py-16 px-6 relative bg-white border-t border-black/5">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Změna: Zarovnání doleva -->
+            <div class="text-left mb-12">
+                <h2 class="font-sans font-bold text-4xl mb-4">Transparentní investice</h2>
+                <p class="text-gray-500 max-w-lg">Žádné skryté poplatky. Víte přesně, za co platíte. Vyberte si balíček,
+                    který sedí vašim cílům.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-start">
+
+                <!-- Start - Zvýrazněná bílá karta (Silnější border a stín) -->
+                <div class="pricing-card bg-white p-8 md:p-12 rounded-3xl border-2 border-akali-primary shadow-md relative group">
+                    <div
+                        class="absolute -top-4 left-8 bg-gray-100 px-4 py-1 rounded-full font-bold text-xs uppercase tracking-wider border border-gray-200 group-hover:bg-akali-primary group-hover:text-white group-hover:border-akali-primary transition-colors">
+                        Pro start
+                    </div>
+                    <h3 class="font-bold text-2xl mb-2 group-hover:text-akali-primary transition-colors">Esence</h3>
+                    <p class="text-gray-500 text-sm mb-6">Ideální pro osobní portfolio nebo malou službu.</p>
+
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black">15.000</span>
+                        <span class="text-gray-400 font-bold">Kč</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-green-100 p-1 rounded-full text-green-600"><i data-lucide="check"
+                                    class="w-3 h-3"></i></div>
+                            One-page (jednostránkový) web
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-green-100 p-1 rounded-full text-green-600"><i data-lucide="check"
+                                    class="w-3 h-3"></i></div>
+                            Responzivní design
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-green-100 p-1 rounded-full text-green-600"><i data-lucide="check"
+                                    class="w-3 h-3"></i></div>
+                            Základní SEO nastavení
+                        </li>
+                    </ul>
+
+                    <a href="#kontakt"
+                        class="block w-full py-4 rounded-xl border-2 border-black/10 text-center font-bold text-gray-700 hover:border-black hover:text-black hover:bg-white transition-all">
+                        Zvolit Esenci
+                    </a>
+                </div>
+
+                <!-- Business - Jemnější tmavá karta -->
+                <div
+                    class="pricing-card-dark bg-akali-dark text-white p-8 md:p-12 rounded-3xl border-2 border-akali-dark relative shadow-flat-primary">
+                    <!-- Změna: Odstraněn odznak "Nejoblíbenější" -->
+                    <h3 class="font-bold text-2xl mb-2 text-akali-secondary">Byznys</h3>
+                    <p class="text-gray-400 text-sm mb-6">Pro firmy, které to myslí vážně.</p>
+
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black">od 35.000</span>
+                        <span class="text-gray-400 font-bold">Kč</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-akali-secondary/20 p-1 rounded-full text-akali-secondary"><i
+                                    data-lucide="check" class="w-3 h-3"></i></div>
+                            Více podstránek & CMS
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-akali-secondary/20 p-1 rounded-full text-akali-secondary"><i
+                                    data-lucide="check" class="w-3 h-3"></i></div>
+                            Pokročilý design & animace
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-akali-secondary/20 p-1 rounded-full text-akali-secondary"><i
+                                    data-lucide="check" class="w-3 h-3"></i></div>
+                            Napojení analytiky
+                        </li>
+                    </ul>
+
+                    <a href="#kontakt"
+                        class="block w-full py-4 rounded-xl bg-akali-primary text-white text-center font-bold shadow-flat btn-flat hover:bg-akali-secondary hover:shadow-flat-hover">
+                        Chci růst
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 px-6 bg-akali-bg relative">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-left mb-12">
+                <h2 class="font-sans font-bold text-4xl mb-4">Časté dotazy</h2>
+                <p class="text-gray-500">Vše, co potřebujete vědět před začátkem spolupráce.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border-b border-black/10 pb-4 cursor-pointer group">
+                    <div class="flex justify-between items-center py-2" onclick="toggleFaq(this)">
+                        <h3 class="font-bold text-xl group-hover:text-akali-primary transition-colors">Kolik stojí nový
+                            web?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-gray-400 group-hover:text-akali-primary"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer text-gray-500 leading-relaxed">
+                        <div class="pt-2 pb-4">
+                            Cena závisí na rozsahu. Jednostránkový web (vizitka) začíná na 15 000 Kč. Komplexnější
+                            firemní weby s více podstránkami se pohybují od 35 000 Kč výše. Vždy dostanete přesnou
+                            kalkulaci předem.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border-b border-black/10 pb-4 cursor-pointer group">
+                    <div class="flex justify-between items-center py-2" onclick="toggleFaq(this)">
+                        <h3 class="font-bold text-xl group-hover:text-akali-primary transition-colors">Jak dlouho trvá
+                            vytvoření?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-gray-400 group-hover:text-akali-primary"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer text-gray-500 leading-relaxed">
+                        <div class="pt-2 pb-4">
+                            Standardní doba pro menší web je 2–3 týdny od dodání podkladů. Větší projekty trvají obvykle
+                            měsíc. Záleží také na rychlosti naší komunikace.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item border-b border-black/10 pb-4 cursor-pointer group">
+                    <div class="flex justify-between items-center py-2" onclick="toggleFaq(this)">
+                        <h3 class="font-bold text-xl group-hover:text-akali-primary transition-colors">Co potřebujete
+                            ode mě?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-gray-400 group-hover:text-akali-primary"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer text-gray-500 leading-relaxed">
+                        <div class="pt-2 pb-4">
+                            Ideálně texty a fotografie. Pokud je nemáte, nevadí – mohu vám pomoci s jejich tvorbou nebo
+                            zajistit fotobanku. Důležitá je také představa o cílech webu.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item border-b border-black/10 pb-4 cursor-pointer group">
+                    <div class="flex justify-between items-center py-2" onclick="toggleFaq(this)">
+                        <h3 class="font-bold text-xl group-hover:text-akali-primary transition-colors">Bude web fungovat
+                            na mobilu?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <i data-lucide="plus" class="w-6 h-6 text-gray-400 group-hover:text-akali-primary"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer text-gray-500 leading-relaxed">
+                        <div class="pt-2 pb-4">
+                            Rozhodně. Uplatňuji přístup "Mobile First", takže web bude vypadat a fungovat skvěle na
+                            všech zařízeních – od telefonu přes tablet až po desktop.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt - Redesigned Edge-to-Edge -->
+    <section id="kontakt" class="py-16 px-6 bg-akali-bg border-t border-black/5">
+        <div class="container mx-auto grid md:grid-cols-2 gap-12 md:gap-16 max-w-6xl">
+            <!-- Left Side Info -->
+            <div class="flex flex-col">
+                <!-- Změna: Obrázek zvětšen na desktopu (w-full max-w-md), na mobilu stále w-56 -->
+                <img src="https://illustrations.popsy.co/amber/studying.svg" alt="Contact Illustration"
+                    class="w-56 md:w-full md:max-w-md opacity-90 order-first md:order-last mb-8 md:mb-0 md:mt-8 mx-auto md:mx-auto">
+                
+                <div>
+                    <span class="text-akali-primary font-bold tracking-widest uppercase text-sm">Kontakt</span>
+                    <h2 class="font-sans font-bold text-4xl mt-2 mb-6">Pojďme tvořit.</h2>
+                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                        Napište mi, co potřebujete. Odpovím do 24 hodin a společně vymyslíme řešení, které posune váš
+                        byznys.
+                    </p>
+                    <!-- Změna: Kontaktní údaje přesunuty do patičky -->
+                </div>
+            </div>
+
+            <!-- Right Side Form -->
+            <div class="flex flex-col justify-center">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Jméno</label>
+                            <input type="text"
+                                class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
+                                placeholder="Vaše jméno">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Email</label>
+                            <input type="email"
+                                class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
+                                placeholder="vas@email.cz">
+                        </div>
+                    </div>
+                    <!-- Změna: Nové pole pro URL -->
+                    <div>
+                        <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Web pro inspiraci (URL)</label>
+                        <input type="url"
+                            class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
+                            placeholder="https://www.oblibenyweb.cz">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Zpráva</label>
+                        <textarea rows="6"
+                            class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
+                            placeholder="Jak vám mohu pomoci?"></textarea>
+                    </div>
+                    <button type="button"
+                        class="w-full bg-akali-primary hover:bg-akali-primary/90 text-white py-5 rounded-xl font-bold shadow-flat btn-flat text-lg border-2 border-transparent transition-all">
+                        Odeslat nezávazně
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+        <!-- Chat Window (Hidden by default) -->
+        <div id="chat-window"
+            class="hidden fixed inset-0 w-full h-[100dvh] z-[100] md:z-auto bg-white border-2 border-black rounded-none flex flex-col overflow-hidden origin-bottom-right transition-all duration-300
+                   md:absolute md:bottom-20 md:right-0 md:inset-auto md:w-[340px] md:h-[500px] md:rounded-2xl shadow-flat">
+            <!-- Header (Flex none - always visible) -->
+            <div class="bg-akali-primary p-4 border-b-2 border-black flex justify-between items-center text-white flex-none">
+                <div class="flex items-center gap-2">
+                    <div class="bg-white/20 p-1.5 rounded-lg"><i data-lucide="bot" class="w-5 h-5"></i></div>
+                    <span class="font-bold font-sans">AKALI Asistent</span>
+                </div>
+                <button onclick="toggleChat()" class="hover:bg-white/20 p-1 rounded-lg transition-colors"><i
+                        data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+
+            <!-- Messages (Flex 1 - Scrolls, no visual scrollbar) -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-akali-bg space-y-4 no-scrollbar">
+                <!-- Intro Message -->
+                <div class="flex gap-3">
+                    <div
+                        class="w-8 h-8 bg-akali-primary rounded-full flex items-center justify-center text-white border border-black flex-shrink-0">
+                        <i data-lucide="bot" class="w-4 h-4"></i></div>
+                    <div class="bg-white border border-black/10 p-3 rounded-2xl rounded-tl-none text-sm shadow-sm">
+                        Ahoj! 👋 Jsem virtuální asistent. Jak vám mohu pomoci s novým webem?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input (Flex none - always at bottom) -->
+            <div class="p-4 bg-white border-t-2 border-black/5 flex-none">
+                <form onsubmit="handleChatSubmit(event)" class="flex gap-2">
+                    <input type="text" id="chat-input"
+                        class="flex-1 border-2 border-black/10 rounded-xl px-3 py-2 text-sm focus:border-akali-primary outline-none transition-colors"
+                        placeholder="Napište zprávu..." autocomplete="off">
+                    <button type="submit"
+                        class="bg-akali-dark text-white p-2 rounded-xl hover:bg-akali-primary transition-colors border-2 border-transparent"><i
+                            data-lucide="send" class="w-5 h-5"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleChat()" id="chat-toggle-btn"
+            class="w-14 h-14 bg-akali-primary text-white rounded-full border-2 border-black shadow-flat hover:shadow-flat-hover hover:-translate-y-1 transition-all flex items-center justify-center">
+            <i data-lucide="message-circle" class="w-7 h-7"></i>
+        </button>
+    </div>
+
+    <footer class="py-12 bg-white border-t border-black/5">
+        <div class="container mx-auto px-6 flex flex-col items-center gap-6">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <a href="mailto:ahoj@akali.cz" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
+                    <i data-lucide="mail" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-bold">ahoj@akali.cz</span>
+                </a>
+                <a href="tel:+420777123456" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
+                    <i data-lucide="phone" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-bold">+420 777 123 456</span>
+                </a>
+            </div>
+            <p class="text-center text-sm text-gray-400 font-semibold">© 2025 Akali Design. Vytvořeno v Ostravě.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                menuBtn.innerHTML = '<i data-lucide="x" class="w-8 h-8"></i>';
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                menuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>'; // Zmenšil jsem ikonu, aby se vešla do boxu
+                document.body.style.overflow = 'auto';
+            }
+            lucide.createIcons();
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) toggleMenu();
+            });
+        });
+
+        // FAQ Toggle Logic
+        function toggleFaq(header) {
+            const item = header.parentElement;
+            item.classList.toggle('active');
+
+            // Optional: Close others
+            const allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        }
+
+        // Chatbot Logic
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatToggleBtn = document.getElementById('chat-toggle-btn');
+        let isChatOpen = false;
+
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                chatWindow.classList.remove('hidden');
+                
+                // Animace
+                gsap.fromTo(chatWindow, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" });
+                
+                // Skrytí tlačítka
+                chatToggleBtn.style.display = 'none';
+
+                // Zámek scrollu na mobilu, aby se neposouvalo pozadí
+                document.body.style.overflow = 'hidden';
+
+            } else {
+                gsap.to(chatWindow, {
+                    scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => {
+                        chatWindow.classList.add('hidden');
+                        chatToggleBtn.style.display = 'flex';
+                        gsap.fromTo(chatToggleBtn, { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.3 });
+                        
+                        // Obnovení scrollu
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        }
+
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // Add User Message
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            // Simulate Bot Typing & Response
+            setTimeout(() => {
+                const response = getBotResponse(text);
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+
+            if (sender === 'bot') {
+                div.className = 'flex gap-3';
+                div.innerHTML = `
+                    <div class="w-8 h-8 bg-akali-primary rounded-full flex items-center justify-center text-white border border-black flex-shrink-0"><i data-lucide="bot" class="w-4 h-4"></i></div>
+                    <div class="bg-white border border-black/10 p-3 rounded-2xl rounded-tl-none text-sm shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-300">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                div.className = 'flex gap-3 justify-end';
+                div.innerHTML = `
+                    <div class="bg-akali-primary text-white p-3 rounded-2xl rounded-tr-none text-sm shadow-flat-sm animate-in fade-in slide-in-from-bottom-2 duration-300">
+                        ${text}
+                    </div>
+                `;
+            }
+
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            lucide.createIcons();
+        }
+
+        function getBotResponse(input) {
+            input = input.toLowerCase();
+            if (input.includes('cena') || input.includes('stojí')) return "Jednostránkový web (vizitka) začíná na 15 000 Kč. Větší weby od 35 000 Kč. Mám vám poslat detailní ceník?";
+            if (input.includes('ahoj') || input.includes('dobrý')) return "Dobrý den! 👋 Jaký projekt plánujete?";
+            if (input.includes('kontakt') || input.includes('email')) return "Můžete mi napsat na ahoj@akali.cz nebo využít formulář v sekci Kontakt.";
+            if (input.includes('ostrava')) return "Ano, sídlím přímo v Ostravě, ale pracuji pro klienty z celé ČR.";
+            return "Díky za zprávu. Momentálně jsem jen demo robot 🤖, ale Matúš si to přečte, pokud použijete kontaktní formulář dole.";
+        }
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header Reveal
+        gsap.utils.toArray('h2').forEach(header => {
+            gsap.from(header, {
+                scrollTrigger: {
+                    trigger: header,
+                    start: "top 90%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Services Stagger Animation (Slide into place)
+        gsap.from(".service-col", {
+            scrollTrigger: {
+                trigger: "#sluzby",
+                start: "top 80%", // Start animation when top of section is 80% down viewport
+            },
+            y: 50, // Start 50px lower
+            opacity: 0, // Start invisible
+            duration: 0.8,
+            stagger: 0.2, // 0.2s delay between each column
+            ease: "power2.out"
+        });
+
+        // Parallax Effect for Blobs
+        gsap.utils.toArray('.blob').forEach((blob, i) => {
+            const speed = blob.getAttribute('data-speed') || 0.5;
+            gsap.to(blob, {
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1, // Smooth scrubbing
+                },
+                y: (i + 1) * 200 * speed, // Move down based on index and speed
+                ease: "none"
+            });
+        });
+
+    </script>
+</body>
+
+</html>
