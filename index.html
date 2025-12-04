@@ -264,7 +264,7 @@
                 </div>
 
                 <p class="font-hand text-gray-400 mt-4 rotate-2 ml-4 text-sm md:text-base">
-                    *Kódováno ručně v Ostravě
+                    *Kódováno pomocí AI
                 </p>
             </div>
 
@@ -272,7 +272,7 @@
             <!-- Změna: mb-8 na mb-4 pro menší mezeru na mobilu -->
             <div class="order-1 md:order-2 relative flex justify-center mb-4 md:mb-0">
                 <!-- Návrat k fungujícímu obrázku, lehce natočený (rotate-6) pro dynamiku -->
-                <img src="https://illustrations.popsy.co/amber/product-launch.svg" alt="Web Launch Illustration"
+                <img src="assets/illustrations/product-launch.svg" alt="Web Launch Illustration"
                     class="w-2/3 md:w-full md:max-w-md object-contain animate-float drop-shadow-2xl rotate-6">
                 <!-- Decorative animated dots -->
                 <div class="absolute w-4 h-4 bg-akali-primary rounded-full top-10 left-10 animate-bounce delay-700">
@@ -289,7 +289,7 @@
         <div class="container mx-auto max-w-6xl">
             <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                 <div class="relative">
-                    <img src="https://illustrations.popsy.co/amber/creative-work.svg" alt="Creative Process"
+                    <img src="assets/illustrations/creative-work.svg" alt="Creative Process"
                         class="w-full max-w-md animate-float-delayed mx-auto">
                 </div>
                 <div>
@@ -348,7 +348,7 @@
                 <div
                     class="service-col group p-8 md:p-12 hover:bg-gray-50/50 transition-colors duration-300 flex flex-col items-start text-left">
                     <div class="h-24 flex items-center justify-start mb-6">
-                        <img src="https://illustrations.popsy.co/amber/web-design.svg"
+                        <img src="assets/illustrations/web-design.svg"
                             class="h-24 object-contain group-hover:scale-110 transition-transform duration-500 origin-left">
                     </div>
                     <h3 class="font-bold text-2xl mb-4 group-hover:text-akali-primary transition-colors">Design & UI/UX
@@ -363,7 +363,7 @@
                 <div
                     class="service-col group p-8 md:p-12 hover:bg-gray-50/50 transition-colors duration-300 flex flex-col items-start text-left">
                     <div class="h-24 flex items-center justify-start mb-6">
-                        <img src="https://illustrations.popsy.co/amber/engineer.svg"
+                        <img src="assets/illustrations/engineer.svg"
                             class="h-24 object-contain group-hover:scale-110 transition-transform duration-500 origin-left">
                     </div>
                     <h3 class="font-bold text-2xl mb-4 group-hover:text-akali-primary transition-colors">Vývoj & Kód
@@ -377,7 +377,7 @@
                 <div
                     class="service-col group p-8 md:p-12 hover:bg-gray-50/50 transition-colors duration-300 flex flex-col items-start text-left">
                     <div class="h-24 flex items-center justify-start mb-6">
-                        <img src="https://illustrations.popsy.co/amber/success.svg"
+                        <img src="assets/illustrations/success.svg"
                             class="h-24 object-contain group-hover:scale-110 transition-transform duration-500 origin-left">
                     </div>
                     <h3 class="font-bold text-2xl mb-4 group-hover:text-akali-primary transition-colors">SEO & Růst</h3>
@@ -392,7 +392,6 @@
     <!-- Portfolio / Práce -->
     <section id="prace" class="py-16 px-6 bg-akali-bg relative">
         <div class="container mx-auto max-w-6xl">
-            <!-- Změna: Zarovnání doleva pro konzistenci -->
             <div class="text-left mb-12">
                 <span class="text-akali-primary font-bold tracking-widest uppercase text-sm">Portfolio</span>
                 <h2 class="font-sans font-bold text-4xl mt-2 mb-4">Vybrané projekty</h2>
@@ -401,39 +400,58 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Project 1 -->
+            <div class="grid md:grid-cols-3 gap-8">
+                 <!-- Project 1: Terapie online -->
+                 <div class="group cursor-pointer portfolio-item">
+                    <div
+                        class="relative overflow-hidden rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
+                        
+                        <!-- Overlay Effect on Hover -->
+                        <div class="absolute inset-0 bg-akali-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20"></div>
+
+                        <div class="aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden">
+                            <img src="terapie-image.png"
+                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Terapie online
+                    </h3>
+                    <p class="text-gray-500">Osobní brand a blog pro psychologa.</p>
+                </div>
+
+                <!-- Project 2: Kemp pod lesem -->
                 <div class="group cursor-pointer portfolio-item">
                     <div
                         class="relative overflow-hidden rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
-                        <div
-                            class="absolute top-4 left-4 z-10 bg-black text-white text-xs font-bold px-3 py-1 rounded-full">
-                            E-shop</div>
-                        <div class="aspect-video bg-gray-50 flex items-center justify-center overflow-hidden">
-                            <img src="https://illustrations.popsy.co/amber/surr-shopping.svg"
-                                class="w-2/3 h-2/3 object-contain group-hover:scale-110 transition-transform duration-500">
+                        
+                        <!-- Overlay Effect on Hover -->
+                        <div class="absolute inset-0 bg-akali-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20"></div>
+
+                        <div class="aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden">
+                            <img src="camp-image.png"
+                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
-                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Neon Future
-                        Store</h3>
-                    <p class="text-gray-500">Kompletní redesign e-shopu s módou.</p>
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Kemp pod lesem</h3>
+                    <p class="text-gray-500">Moderní web pro autokemp v Beskydech.</p>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="group cursor-pointer mt-0 md:mt-16 portfolio-item">
+                <!-- Project 3: Nehtové studio Elegance -->
+                <div class="group cursor-pointer portfolio-item">
                     <div
                         class="relative overflow-hidden rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
-                        <div
-                            class="absolute top-4 left-4 z-10 bg-black text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Web</div>
-                        <div class="aspect-video bg-gray-50 flex items-center justify-center overflow-hidden">
-                            <img src="https://illustrations.popsy.co/amber/finance.svg"
-                                class="w-2/3 h-2/3 object-contain group-hover:scale-110 transition-transform duration-500">
+
+                        <!-- Overlay Effect on Hover -->
+                        <div class="absolute inset-0 bg-akali-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20"></div>
+
+                        <div class="aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden">
+                            <img src="elegance-image.png"
+                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
-                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Finance Novák
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Nehtové studio Elegance
                     </h3>
-                    <p class="text-gray-500">Firemní web pro finančního poradce.</p>
+                    <p class="text-gray-500">Elegantní prezentace a rezervace.</p>
                 </div>
             </div>
         </div>
@@ -461,7 +479,7 @@
                     <p class="text-gray-500 text-sm mb-6">Ideální pro osobní portfolio nebo malou službu.</p>
 
                     <div class="flex items-baseline gap-1 mb-8">
-                        <span class="text-4xl font-black">15.000</span>
+                        <span class="text-4xl font-black">5 000</span>
                         <span class="text-gray-400 font-bold">Kč</span>
                     </div>
 
@@ -497,7 +515,7 @@
                     <p class="text-gray-400 text-sm mb-6">Pro firmy, které to myslí vážně.</p>
 
                     <div class="flex items-baseline gap-1 mb-8">
-                        <span class="text-4xl font-black">od 35.000</span>
+                        <span class="text-4xl font-black">od 9 900</span>
                         <span class="text-gray-400 font-bold">Kč</span>
                     </div>
 
@@ -549,8 +567,8 @@
                     </div>
                     <div class="faq-answer text-gray-500 leading-relaxed">
                         <div class="pt-2 pb-4">
-                            Cena závisí na rozsahu. Jednostránkový web (vizitka) začíná na 15 000 Kč. Komplexnější
-                            firemní weby s více podstránkami se pohybují od 35 000 Kč výše. Vždy dostanete přesnou
+                            Cena závisí na rozsahu. Jednostránkový web (vizitka) začíná na 5 000 Kč. Komplexnější
+                            firemní weby s více podstránkami se pohybují od 9 900 Kč výše. Vždy dostanete přesnou
                             kalkulaci předem.
                         </div>
                     </div>
@@ -567,8 +585,7 @@
                     </div>
                     <div class="faq-answer text-gray-500 leading-relaxed">
                         <div class="pt-2 pb-4">
-                            Standardní doba pro menší web je 2–3 týdny od dodání podkladů. Větší projekty trvají obvykle
-                            měsíc. Záleží také na rychlosti naší komunikace.
+                            Web v balíčku Esence zvládnu do 1 týdne od dodání podkladů. Větší projekty (Byznys) trvají obvykle 2–3 týdny. Záleží také na rychlosti naší komunikace.
                         </div>
                     </div>
                 </div>
@@ -616,7 +633,7 @@
             <!-- Left Side Info -->
             <div class="flex flex-col">
                 <!-- Změna: Obrázek zvětšen na desktopu (w-full max-w-md), na mobilu stále w-56 -->
-                <img src="https://illustrations.popsy.co/amber/studying.svg" alt="Contact Illustration"
+                <img src="assets/illustrations/studying.svg" alt="Contact Illustration"
                     class="w-56 md:w-full md:max-w-md opacity-90 order-first md:order-last mb-8 md:mb-0 md:mt-8 mx-auto md:mx-auto">
                 
                 <div>
@@ -632,35 +649,46 @@
 
             <!-- Right Side Form -->
             <div class="flex flex-col justify-center">
-                <form class="space-y-6">
+                <!-- Přidáno novalidate pro vypnutí systémových bublin -->
+                <form id="contact-form" class="space-y-6" onsubmit="handleContactSubmit(event)" novalidate>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Jméno</label>
-                            <input type="text"
-                                class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
-                                placeholder="Vaše jméno">
+                            <!-- Odstraněny inline validační eventy, přidán error kontejner -->
+                            <div class="relative">
+                                <input type="text"
+                                    name="name"
+                                    required
+                                    pattern="^[a-zA-ZáčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ\s\.-]+$"
+                                    class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
+                                    placeholder="Vaše jméno">
+                                <p class="error-text text-red-500 text-sm mt-1 font-bold hidden"></p>
+                            </div>
                         </div>
                         <div>
                             <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Email</label>
-                            <input type="email"
-                                class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
-                                placeholder="vas@email.cz">
+                            <div class="relative">
+                                <input type="email"
+                                    name="email"
+                                    required
+                                    class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
+                                    placeholder="vas@email.cz">
+                                <p class="error-text text-red-500 text-sm mt-1 font-bold hidden"></p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Změna: Nové pole pro URL -->
-                    <div>
-                        <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Web pro inspiraci (URL)</label>
-                        <input type="url"
-                            class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
-                            placeholder="https://www.oblibenyweb.cz">
                     </div>
                     <div>
                         <label class="block text-sm font-bold uppercase mb-2 ml-1 text-gray-500">Zpráva</label>
-                        <textarea rows="6"
-                            class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
-                            placeholder="Jak vám mohu pomoci?"></textarea>
+                        <div class="relative">
+                            <textarea rows="6"
+                                name="message"
+                                required
+                                class="w-full p-4 rounded-xl bg-white border-2 border-transparent focus:border-akali-primary outline-none transition-all font-semibold shadow-sm focus:shadow-md"
+                                placeholder="Jak vám mohu pomoci?"></textarea>
+                            <p class="error-text text-red-500 text-sm mt-1 font-bold hidden"></p>
+                        </div>
                     </div>
-                    <button type="button"
+                    <button type="submit"
                         class="w-full bg-akali-primary hover:bg-akali-primary/90 text-white py-5 rounded-xl font-bold shadow-flat btn-flat text-lg border-2 border-transparent transition-all">
                         Odeslat nezávazně
                     </button>
@@ -721,13 +749,13 @@
     <footer class="py-12 bg-white border-t border-black/5">
         <div class="container mx-auto px-6 flex flex-col items-center gap-6">
             <div class="flex flex-col md:flex-row gap-8 items-center">
-                <a href="mailto:ahoj@akali.cz" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
+                <a href="mailto:podpora@akali.cz" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
                     <i data-lucide="mail" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-bold">ahoj@akali.cz</span>
+                    <span class="font-bold">podpora@akali.cz</span>
                 </a>
-                <a href="tel:+420777123456" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
+                <a href="tel:+420735040975" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
                     <i data-lucide="phone" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                    <span class="font-bold">+420 777 123 456</span>
+                    <span class="font-bold">+420 735 040 975</span>
                 </a>
             </div>
             <p class="text-center text-sm text-gray-400 font-semibold">© 2025 Akali Design. Vytvořeno v Ostravě.</p>
@@ -778,6 +806,102 @@
                 }
             });
         }
+
+        // Contact Form Handling with Custom Validation
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            let hasError = false;
+
+            // Helper to show error
+            const showError = (input, message) => {
+                const errorDisplay = input.nextElementSibling;
+                if (errorDisplay) {
+                    errorDisplay.textContent = message;
+                    errorDisplay.classList.remove('hidden');
+                }
+                // Toggle red border, remove transparent to ensure visibility
+                input.classList.add('border-red-500');
+                input.classList.remove('border-transparent');
+                hasError = true;
+            };
+
+            // Helper to clear error (can be used in oninput)
+            const clearError = (input) => {
+                const errorDisplay = input.nextElementSibling;
+                if (errorDisplay) {
+                    errorDisplay.classList.add('hidden');
+                }
+                input.classList.remove('border-red-500');
+                input.classList.add('border-transparent');
+            };
+
+            // 1. Name Validation
+            const nameInput = form.elements['name'];
+            if (!nameInput.value.trim()) {
+                showError(nameInput, 'Vyplňte prosím své jméno.');
+            } else if (nameInput.validity.patternMismatch) {
+                showError(nameInput, 'Jméno může obsahovat pouze písmena, tečky a pomlčky.');
+            } else {
+                clearError(nameInput);
+            }
+
+            // 2. Email Validation
+            const emailInput = form.elements['email'];
+            if (!emailInput.value.trim()) {
+                showError(emailInput, 'Vyplňte prosím email.');
+            } else if (!emailInput.validity.valid) {
+                showError(emailInput, 'Zadejte prosím platný email (např. jan@novak.cz).');
+            } else {
+                clearError(emailInput);
+            }
+
+            // 3. Message Validation
+            const msgInput = form.elements['message'];
+            if (!msgInput.value.trim()) {
+                showError(msgInput, 'Napište mi prosím zprávu.');
+            } else {
+                clearError(msgInput);
+            }
+
+            if (hasError) return;
+
+            // Simple Sanitization (Strip HTML tags)
+            const sanitize = (str) => {
+                const temp = document.createElement('div');
+                temp.textContent = str;
+                return temp.innerHTML;
+            };
+
+            const name = sanitize(nameInput.value);
+            const email = sanitize(emailInput.value);
+            const message = sanitize(msgInput.value);
+
+            console.log('Sanitized Form Data:', { name, email, message });
+            alert('Děkuji! Zpráva byla úspěšně odeslána. (Demo)');
+            form.reset();
+            
+            // Reset borders after success
+            [nameInput, emailInput, msgInput].forEach(input => {
+                input.classList.remove('border-red-500');
+                input.classList.add('border-transparent');
+            });
+        }
+
+        // Add listeners to clear errors as you type
+        document.addEventListener('DOMContentLoaded', () => {
+             const inputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
+             inputs.forEach(input => {
+                 input.addEventListener('input', () => {
+                     // Only clear if currently showing error to avoid unnecessary class toggling
+                     if (input.classList.contains('border-red-500')) {
+                        input.nextElementSibling.classList.add('hidden');
+                        input.classList.remove('border-red-500');
+                        input.classList.add('border-transparent');
+                     }
+                 });
+             });
+        });
 
         // Chatbot Logic
         const chatWindow = document.getElementById('chat-window');
@@ -857,9 +981,9 @@
 
         function getBotResponse(input) {
             input = input.toLowerCase();
-            if (input.includes('cena') || input.includes('stojí')) return "Jednostránkový web (vizitka) začíná na 15 000 Kč. Větší weby od 35 000 Kč. Mám vám poslat detailní ceník?";
+            if (input.includes('cena') || input.includes('stojí')) return "Jednostránkový web (vizitka) začíná na 5 000 Kč. Větší weby od 9 900 Kč. Mám vám poslat detailní ceník?";
             if (input.includes('ahoj') || input.includes('dobrý')) return "Dobrý den! 👋 Jaký projekt plánujete?";
-            if (input.includes('kontakt') || input.includes('email')) return "Můžete mi napsat na ahoj@akali.cz nebo využít formulář v sekci Kontakt.";
+            if (input.includes('kontakt') || input.includes('email')) return "Můžete mi napsat na podpora@akali.cz nebo využít formulář v sekci Kontakt.";
             if (input.includes('ostrava')) return "Ano, sídlím přímo v Ostravě, ale pracuji pro klienty z celé ČR.";
             return "Díky za zprávu. Momentálně jsem jen demo robot 🤖, ale Matúš si to přečte, pokud použijete kontaktní formulář dole.";
         }
