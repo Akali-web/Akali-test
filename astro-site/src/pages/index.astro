@@ -1,0 +1,268 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/react/Navbar';
+import Services from '../components/react/Services';
+import Faq from '../components/react/Faq';
+import Contact from '../components/react/Contact';
+import TactileButton from '../components/react/TactileButton';
+---
+
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AKALI | Webdesign Ostrava</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="antialiased">
+    <!-- Background Blobs -->
+    <div class="blob bg-purple-200 w-96 h-96 top-0 left-0 mix-blend-multiply"></div>
+    <div class="blob bg-pink-200 w-96 h-96 bottom-0 right-0 mix-blend-multiply"></div>
+    <div class="blob bg-yellow-100 w-64 h-64 top-1/3 right-10 mix-blend-multiply opacity-40"></div>
+
+    <!-- Navbar -->
+    <Navbar client:load />
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-8 md:pt-48 md:pb-24 px-6 relative overflow-hidden">
+        <div class="container mx-auto max-w-6xl grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+            <!-- Text Content -->
+            <div class="order-2 md:order-1 relative z-10">
+                <h1 class="font-sans font-extrabold text-4xl md:text-7xl leading-[1.1] mb-4 text-akali-dark">
+                    Weby, co <br>
+                    <span class="highlight-text">vydělávají.</span>
+                </h1>
+                <p class="font-sans text-base md:text-lg text-gray-600 mb-6 max-w-lg leading-relaxed">
+                    Stavím moderní weby s důrazem na čistý design a funkčnost. Žádný korporátní balast, jen přímá cesta k vašim zákazníkům.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <TactileButton href="#investice" variant="primary" client:load>
+                        Chci nový web
+                    </TactileButton>
+                    <TactileButton href="#sluzby" variant="secondary" client:load>
+                        Jak to funguje?
+                    </TactileButton>
+                </div>
+
+                <p class="font-hand text-gray-400 mt-4 rotate-2 ml-4 text-sm md:text-base">
+                    *Kódováno pomocí AI
+                </p>
+            </div>
+
+            <!-- Image Content -->
+            <div class="order-1 md:order-2 relative flex justify-center mb-4 md:mb-0">
+                <img src="/assets/illustrations/product-launch.svg" alt="Web Launch Illustration" class="w-2/3 md:w-full md:max-w-md object-contain animate-float drop-shadow-2xl rotate-6">
+                <div class="absolute w-4 h-4 bg-akali-primary rounded-full top-10 left-10 animate-bounce"></div>
+                <div class="absolute w-3 h-3 bg-akali-secondary rounded-full bottom-10 right-10 animate-pulse"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Why Me Section -->
+    <section id="proc-ja" class="py-16 px-6 relative">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div class="relative">
+                    <img src="/assets/illustrations/creative-work.svg" alt="Creative Process" class="w-full max-w-md animate-float-delayed mx-auto">
+                </div>
+                <div>
+                    <h2 class="font-sans font-bold text-4xl mb-6">Nejsem agentura.<br>Jsem <span class="text-akali-primary">váš partner.</span></h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Většina webů vypadá stejně. Nuda, šablona, generický text. Já k tomu přistupuji jinak.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-akali-primary/10 rounded-lg flex items-center justify-center text-akali-primary flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-1">Rychlost je základ</h3>
+                                <p class="text-gray-500 text-sm">Žádné zbytečné pluginy. Čistý kód, který se načte dřív, než zákazník stihne mrknout.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-akali-secondary/10 rounded-lg flex items-center justify-center text-akali-secondary flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-xl mb-1">Mobile First</h3>
+                                <p class="text-gray-500 text-sm">Design tvořím primárně pro telefony, protože tam je dnes 70 % vašich zákazníků.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <Services client:load />
+
+    <!-- Portfolio Section -->
+    <section id="prace" class="py-16 px-6 bg-akali-bg relative">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-left mb-12">
+                <span class="text-akali-primary font-bold tracking-widest uppercase text-sm">Portfolio</span>
+                <h2 class="font-sans font-bold text-4xl mt-2 mb-4">Vybrané projekty</h2>
+                <p class="text-gray-500 max-w-lg">
+                    Ukázky práce, která pomáhá mým klientům růst.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <a href="https://akali-web.github.io/nails-website" target="_blank" rel="noopener noreferrer" class="group cursor-pointer">
+                    <div class="relative overflow-visible rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
+                        <div class="absolute inset-0 bg-akali-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 rounded-3xl"></div>
+                        <span class="absolute -top-3 -right-3 bg-akali-secondary text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-akali-dark shadow-neo-sm z-30">Osobní projekt</span>
+                        <div class="aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden rounded-3xl">
+                            <img src="/elegance-image.png" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Nehtové studio Elegance</h3>
+                    <p class="text-gray-500">Elegantní prezentace a rezervace.</p>
+                </a>
+
+                <a href="https://khgporadenstvi.cz/" target="_blank" rel="noopener noreferrer" class="group cursor-pointer">
+                    <div class="relative overflow-visible rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
+                        <div class="absolute inset-0 bg-akali-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 rounded-3xl"></div>
+                        <span class="absolute -top-3 -right-3 bg-akali-primary text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-akali-dark shadow-neo-sm z-30">Web</span>
+                        <div class="aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden rounded-3xl">
+                            <img src="/terapie-image.png" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Terapie online</h3>
+                    <p class="text-gray-500">Osobní brand a blog pro psychologa.</p>
+                </a>
+
+                <a href="https://akali-web.github.io/camp-website/" target="_blank" rel="noopener noreferrer" class="group cursor-pointer">
+                    <div class="relative overflow-visible rounded-3xl border-2 border-black/5 shadow-flat hover:shadow-flat-hover transition-all duration-300 bg-white mb-6">
+                        <div class="absolute inset-0 bg-akali-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 rounded-3xl"></div>
+                        <span class="absolute -top-3 -right-3 bg-akali-secondary text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-akali-dark shadow-neo-sm z-30">Osobní projekt</span>
+                        <div class="aspect-[4/3] bg-gray-50 flex items-center justify-center overflow-hidden rounded-3xl">
+                            <img src="/camp-image.png" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-1 group-hover:text-akali-primary transition-colors">Kemp pod lesem</h3>
+                    <p class="text-gray-500">Moderní web pro autokemp v Beskydech.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="investice" class="py-16 px-6 relative bg-white border-t border-black/5">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-left mb-12">
+                <span class="text-akali-primary font-bold tracking-widest uppercase text-sm">Ceník</span>
+                <h2 class="font-sans font-bold text-4xl mt-2 mb-4">Transparentní investice</h2>
+                <p class="text-gray-500 max-w-lg">Žádné skryté poplatky. Víte přesně, za co platíte. Vyberte si balíček, který sedí vašim cílům.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-start">
+                <!-- Start Package -->
+                <div class="group bg-white p-8 md:p-12 rounded-3xl border-2 border-akali-primary shadow-md relative hover:translate-y-[-8px] transition-all duration-300">
+                    <div class="absolute -top-4 left-8 bg-gray-100 px-4 py-1 rounded-full font-bold text-xs uppercase tracking-wider border border-gray-200 group-hover:bg-akali-primary group-hover:text-white group-hover:border-akali-primary transition-colors">
+                        Pro start
+                    </div>
+                    <h3 class="font-bold text-2xl mb-2 group-hover:text-akali-primary transition-colors">Esence</h3>
+                    <p class="text-gray-500 text-sm mb-6">Ideální pro osobní portfolio nebo malou službu.</p>
+
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black">5 000</span>
+                        <span class="text-gray-400 font-bold">Kč</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-green-100 p-1 rounded-full text-green-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            One-page (jednostránkový) web
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-green-100 p-1 rounded-full text-green-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            Responzivní design
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-green-100 p-1 rounded-full text-green-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            Základní SEO nastavení
+                        </li>
+                    </ul>
+
+                    <TactileButton href="#kontakt" variant="outline" className="block w-full" client:load>
+                        Zvolit Esenci
+                    </TactileButton>
+                </div>
+
+                <!-- Business Package -->
+                <div class="bg-akali-dark text-white p-8 md:p-12 rounded-3xl border-2 border-akali-dark relative shadow-flat-primary hover:translate-y-[-4px] hover:shadow-flat-primary-hover transition-all duration-300">
+                    <h3 class="font-bold text-2xl mb-2 text-akali-secondary">Byznys</h3>
+                    <p class="text-gray-400 text-sm mb-6">Pro firmy, které to myslí vážně.</p>
+
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-4xl font-black">od 9 900</span>
+                        <span class="text-gray-400 font-bold">Kč</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-akali-secondary/20 p-1 rounded-full text-akali-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            Více podstránek & CMS
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-akali-secondary/20 p-1 rounded-full text-akali-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            Pokročilý design & animace
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-medium">
+                            <div class="bg-akali-secondary/20 p-1 rounded-full text-akali-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            Napojení analytiky
+                        </li>
+                    </ul>
+
+                    <TactileButton href="#kontakt" variant="dark" className="block w-full" client:load>
+                        Chci růst
+                    </TactileButton>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <Faq client:load />
+
+    <!-- Contact Section -->
+    <Contact client:load />
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white border-t border-black/5">
+        <div class="container mx-auto px-6 flex flex-col items-center gap-6">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <a href="mailto:podpora@akali.cz" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span class="font-bold">podpora@akali.cz</span>
+                </a>
+                <a href="tel:+420735040975" class="flex items-center gap-3 text-gray-600 hover:text-akali-primary transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span class="font-bold">+420 735 040 975</span>
+                </a>
+            </div>
+            <p class="text-center text-sm text-gray-400 font-semibold">© 2025 Akali Design. Vytvořeno v Ostravě.</p>
+        </div>
+    </footer>
+</body>
+</html>

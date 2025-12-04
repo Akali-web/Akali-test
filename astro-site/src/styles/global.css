@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-hand: 'Kalam', cursive;
+
+  --color-akali-bg: #FDFBF7;
+  --color-akali-dark: #18181b;
+  --color-akali-primary: #6366F1;
+  --color-akali-secondary: #F472B6;
+  --color-akali-surface: #FFFFFF;
+
+  --shadow-flat: 4px 4px 0px 0px rgba(24, 24, 27, 1);
+  --shadow-flat-hover: 8px 8px 0px 0px rgba(24, 24, 27, 1);
+  --shadow-flat-sm: 2px 2px 0px 0px rgba(24, 24, 27, 1);
+  --shadow-flat-primary: 8px 8px 0px 0px #6366F1;
+  --shadow-flat-primary-hover: 12px 12px 0px 0px #6366F1;
+  --shadow-neo-sm: 3px 3px 0px 0px rgba(24, 24, 27, 1);
+  --shadow-neo: 5px 5px 0px 0px rgba(24, 24, 27, 1);
+}
+
+body {
+  background-color: var(--color-akali-bg);
+  color: var(--color-akali-dark);
+  overflow-x: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.6;
+  will-change: transform;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.highlight-text {
+  position: relative;
+  z-index: 10;
+}
+
+.highlight-text::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: -2px;
+  width: 105%;
+  height: 30%;
+  background-color: var(--color-akali-secondary);
+  opacity: 0.4;
+  z-index: -1;
+  transform: rotate(-1deg);
+  border-radius: 4px;
+}
