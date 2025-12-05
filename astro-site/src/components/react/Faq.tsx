@@ -3,7 +3,7 @@ import { Plus, Minus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const items = [
-  { q: "Kolik stojí nový web?", a: "Cena závisí na rozsahu. Jednostránkový web (vizitka) začíná na 5 000 Kč. Komplexnější firemní weby s více podstránkami se pohybují od 9 900 Kč výše. Vždy dostanete přesnou kalkulaci předem." },
+  { q: "Kolik stojí nový web?", a: "Cena závisí na rozsahu. Jednostránkový web (vizitka) začíná na 6 000 Kč. Komplexnější firemní weby s více podstránkami se pohybují od 11 000 Kč výše. Vždy dostanete přesnou kalkulaci předem." },
   { q: "Jak dlouho trvá vytvoření?", a: "Web v balíčku Esence zvládnu do 1 týdne od dodání podkladů. Větší projekty (Byznys) trvají obvykle 2–3 týdny. Záleží také na rychlosti naší komunikace." },
   { q: "Co potřebujete ode mě?", a: "Ideálně texty a fotografie. Pokud je nemáte, nevadí – mohu vám pomoci s jejich tvorbou nebo zajistit fotobanku. Důležitá je také představa o cílech webu." },
   { q: "Bude web fungovat na mobilu?", a: "Rozhodně. Uplatňuji přístup 'Mobile First', takže web bude vypadat a fungovat skvěle na všech zařízeních – od telefonu přes tablet až po desktop." }
@@ -16,9 +16,33 @@ export default function Faq() {
     <section id="faq" className="py-16 px-6 bg-akali-bg relative">
       <div className="container mx-auto max-w-4xl">
         <div className="text-left mb-12">
-          <span className="text-akali-primary font-bold tracking-widest uppercase text-sm">FAQ</span>
-          <h2 className="font-sans font-bold text-4xl mt-2 mb-4">Časté dotazy</h2>
-          <p className="text-gray-500">Vše, co potřebujete vědět před začátkem spolupráce.</p>
+          <motion.span
+            className="text-akali-primary font-bold tracking-widest uppercase text-sm block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            FAQ
+          </motion.span>
+          <motion.h2
+            className="font-sans font-bold text-4xl mt-2 mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
+          >
+            Časté dotazy
+          </motion.h2>
+          <motion.p
+            className="text-gray-500"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            Vše, co potřebujete vědět před začátkem spolupráce.
+          </motion.p>
         </div>
 
         <div className="space-y-4">

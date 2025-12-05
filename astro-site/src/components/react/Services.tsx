@@ -10,7 +10,7 @@ const services = [
   {
     icon: Code,
     title: "Vývoj & Kód",
-    desc: "Kvalitní kód bez balastu. React, TypeScript, Tailwind. Weby, které se načtou bleskově a jsou bezpečné."
+    desc: "Kvalitní, čistý kód. React, TypeScript, Tailwind. Weby, které se načtou bleskově a jsou bezpečné."
   },
   {
     icon: TrendingUp,
@@ -24,11 +24,33 @@ export default function Services() {
     <section id="sluzby" className="py-16 bg-white border-y border-black/5">
       <div className="container mx-auto max-w-6xl px-6 mb-12">
         <div className="text-left max-w-2xl">
-          <span className="text-akali-primary font-bold tracking-widest uppercase text-sm">Co umím</span>
-          <h2 className="font-sans font-bold text-4xl mt-2 mb-6">Kompletní digitální servis</h2>
-          <p className="text-gray-500 text-lg">
+          <motion.span
+            className="text-akali-primary font-bold tracking-widest uppercase text-sm block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            Co umím
+          </motion.span>
+          <motion.h2
+            className="font-sans font-bold text-4xl mt-2 mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
+          >
+            Kompletní digitální servis
+          </motion.h2>
+          <motion.p
+            className="text-gray-500 text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             Nestavím jen weby. Stavím nástroje, které vám ušetří čas a vydělají peníze. Od návrhu po kód.
-          </p>
+          </motion.p>
         </div>
       </div>
 

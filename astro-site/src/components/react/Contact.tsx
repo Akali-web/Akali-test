@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 
 export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState({ name: '', email: '', message: '' });
+  const [errorMessage, setErrorMessage] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   // Set custom validation messages in Czech
@@ -31,17 +32,12 @@ export default function Contact() {
     }
   }, []);
 
-  const sanitize = (str: string) => {
-    const temp = document.createElement('div');
-    temp.textContent = str;
-    return temp.innerHTML;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Clear previous errors
     setErrors({ name: '', email: '', message: '' });
+    setErrorMessage('');
 
     // Validate
     let hasError = false;
@@ -63,22 +59,37 @@ export default function Contact() {
 
     if (hasError) return;
 
-    // Sanitize and submit
-    const sanitizedData = {
-      name: sanitize(formState.name),
-      email: sanitize(formState.email),
-      message: sanitize(formState.message)
-    };
-
     setStatus('submitting');
-    console.log('Sanitized form data:', sanitizedData);
 
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success');
-      setFormState({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+    try {
+      // Create FormData and add values from state
+      const formData = new FormData();
+      formData.append('name', formState.name);
+      formData.append('email', formState.email);
+      formData.append('message', formState.message);
+      formData.append('access_key', 'd3db05d5-091e-4dd9-a74d-31f0411b9525');
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setErrorMessage(result.message || 'Nastala chyba při odesílání. Zkuste to prosím znovu.');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage('Nastala chyba při odesílání. Kontaktujte nás prosím přímo na podpora@akali.cz');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -86,11 +97,33 @@ export default function Contact() {
       <div className="container mx-auto max-w-5xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="text-akali-primary font-bold tracking-widest uppercase text-sm">Kontakt</span>
-          <h2 className="font-sans font-bold text-4xl mt-2 mb-6">Pojďme tvořit.</h2>
-          <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
+          <motion.span
+            className="text-akali-primary font-bold tracking-widest uppercase text-sm block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            Kontakt
+          </motion.span>
+          <motion.h2
+            className="font-sans font-bold text-4xl mt-2 mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
+          >
+            Pojďme tvořit.
+          </motion.h2>
+          <motion.p
+            className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             Napište mi, co potřebujete. Odpovím do 24 hodin a společně vymyslíme řešení, které posune váš byznys.
-          </p>
+          </motion.p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
@@ -204,7 +237,7 @@ export default function Contact() {
                 whileHover={{ scale: status === 'idle' ? 1.02 : 1 }}
                 whileTap={{ scale: status === 'idle' ? 0.98 : 1 }}
                 className={`w-full py-4 rounded-xl font-bold text-lg shadow-flat hover:shadow-flat-hover hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-flat-sm transition-all border-2 border-akali-dark flex items-center justify-center gap-2
-                  ${status === 'success' ? 'bg-green-500 border-green-600 text-white' : 'bg-akali-primary text-white'}
+                  ${status === 'success' ? 'bg-green-500 border-green-600 text-white' : status === 'error' ? 'bg-red-500 border-red-600 text-white' : 'bg-akali-primary text-white'}
                   ${status !== 'idle' ? 'cursor-not-allowed opacity-75' : ''}`}
               >
                 {status === 'idle' && (
@@ -213,8 +246,15 @@ export default function Contact() {
                   </>
                 )}
                 {status === 'submitting' && 'Odesílám...'}
-                {status === 'success' && 'Odesláno!'}
+                {status === 'success' && 'Odesláno! ✓'}
+                {status === 'error' && 'Chyba'}
               </motion.button>
+              {status === 'error' && errorMessage && (
+                <p className="text-red-500 text-sm mt-2 text-center font-bold">{errorMessage}</p>
+              )}
+              {status === 'success' && (
+                <p className="text-green-600 text-sm mt-2 text-center font-bold">Děkujeme! Vaše zpráva byla odeslána.</p>
+              )}
             </form>
           </div>
         </div>

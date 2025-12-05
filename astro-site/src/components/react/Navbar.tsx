@@ -31,8 +31,8 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4 md:py-6
-          ${scrolled ? 'py-3 bg-white/80 backdrop-blur-md border-b-2 border-akali-dark/5' : 'bg-transparent'}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-2.5 md:py-4
+          ${scrolled ? 'py-2 md:py-3 bg-white/80 backdrop-blur-md border-b-2 border-akali-dark/5' : 'bg-transparent'}
         `}
       >
         <div className="container mx-auto max-w-6xl flex justify-between items-center">
