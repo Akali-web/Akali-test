@@ -6,7 +6,8 @@ const items = [
   { q: "Kolik stojí nový web?", a: "Cena závisí na rozsahu. Jednostránkový web (vizitka) začíná na 6 000 Kč. Komplexnější firemní weby s více podstránkami se pohybují od 11 000 Kč výše. Vždy dostanete přesnou kalkulaci předem." },
   { q: "Jak dlouho trvá vytvoření?", a: "Web v balíčku Esence zvládnu do 1 týdne od dodání podkladů. Větší projekty (Byznys) trvají obvykle 2–3 týdny. Záleží také na rychlosti naší komunikace." },
   { q: "Co potřebujete ode mě?", a: "Ideálně texty a fotografie. Pokud je nemáte, nevadí – mohu vám pomoci s jejich tvorbou nebo zajistit fotobanku. Důležitá je také představa o cílech webu." },
-  { q: "Bude web fungovat na mobilu?", a: "Rozhodně. Uplatňuji přístup 'Mobile First', takže web bude vypadat a fungovat skvěle na všech zařízeních – od telefonu přes tablet až po desktop." }
+  { q: "Bude web fungovat na mobilu?", a: "Rozhodně. Uplatňuji přístup 'Mobile First', takže web bude vypadat a fungovat skvěle na všech zařízeních – od telefonu přes tablet až po desktop." },
+  { q: "Používáte při práci AI?", a: "Ano! Umělá inteligence je pro mě klíčový nástroj, který mi umožňuje pracovat efektivněji a soustředit se na kreativní a strategické aspekty webdesignu. Aktivně využívám špičkové modely jako jsou Claude a Gemini. Celý tento web byl postaven s jejich pomocí." }
 ];
 
 export default function Faq() {
