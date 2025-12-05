@@ -31,17 +31,21 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-2.5 md:py-4
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 px-5 py-2.5 md:py-4
           ${scrolled ? 'py-2 md:py-3 bg-white/80 backdrop-blur-md border-b-2 border-akali-dark/5' : 'bg-transparent'}
         `}
       >
         <div className="container mx-auto max-w-6xl flex justify-between items-center">
-          <a href="#" className="flex items-center gap-2 group">
+          <motion.a
+            href="#"
+            className="flex items-center gap-2 group"
+            whileTap={{ scale: 0.95, y: 1 }}
+          >
             <div className="w-10 h-10 bg-akali-primary rounded-lg border-2 border-akali-dark shadow-neo-sm group-hover:shadow-neo transition-all flex items-center justify-center text-white">
               <Terminal size={20} />
             </div>
             <span className="font-sans font-black text-2xl tracking-tight text-akali-dark">AKALI</span>
-          </a>
+          </motion.a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-2 bg-white/90 backdrop-blur-sm px-2 py-2 rounded-2xl border-2 border-akali-dark/5 shadow-sm">
